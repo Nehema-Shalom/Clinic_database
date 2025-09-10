@@ -4,7 +4,7 @@ Welcome to the Clinic Booking System! This database helps manage patients, docto
 
 💾 Database Name
 
-clinic_db
+  clinic_db
 
 📋 Tables & Purpose
 1️⃣ Patients
@@ -59,7 +59,7 @@ Stores diagnosis, prescription, and notes
 
 🗯️One-to-one relationships for payments & medical records
 
-🤍 How to Use
+--------🤍 How to Use -------
 
 Open MySQL Workbench (or any MySQL client)
 
@@ -67,6 +67,6 @@ Run the clinic_db.sql script
 
 Start adding patients, doctors, appointments, payments, and medical records 💖
 
-👩‍💻 Author
+        👩‍💻 Author   
 
-Shalom🦋🎀🗯️
+      🗯️ Shalom🦋🎀
