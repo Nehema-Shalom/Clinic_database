@@ -42,7 +42,8 @@ One-to-one with appointments 💸
 Tracks payment amount, date, and method (Cash, Credit Card, Insurance, Mobile Money)
 
 6️⃣ Medical Records
-🌸 ER Diagram 🌸
+
+🌸ER Diagram 
 
 ```mermaid
 erDiagram
@@ -106,29 +107,6 @@ erDiagram
     Appointments ||--|| Medical_Records : "recorded_in"
 
 
-One-to-one with appointments 📝
-
-Stores diagnosis, prescription, and notes
-
--------- Key Features -----------
-
-🗯️ Foreign keys for data integrity
-
-🗯️Cascading deletes to keep database clean
-
-🗯️ Auto timestamps for tracking creation dates
-
-🗯️ Enums for consistent values (gender, status, payment method)
-
-🗯️One-to-one relationships for payments & medical records
-
---------🤍 How to Use -------
-
-Open MySQL Workbench (or any MySQL client)
-
-Run the clinic_db.sql script
-
-Start adding patients, doctors, appointments, payments, and medical records 💖
 
         👩‍💻 Author   
 
