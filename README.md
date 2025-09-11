@@ -42,6 +42,69 @@ One-to-one with appointments 💸
 Tracks payment amount, date, and method (Cash, Credit Card, Insurance, Mobile Money)
 
 6️⃣ Medical Records
+🌸 ER Diagram 🌸
+
+```mermaid
+erDiagram
+    Patients {
+        int patient_id PK
+        string first_name
+        string last_name
+        string email
+        string phone
+        date dob
+        enum gender
+        timestamp created_at
+    }
+
+    Departments {
+        int department_id PK
+        string department_name
+    }
+
+    Doctors {
+        int doctor_id PK
+        string first_name
+        string last_name
+        string specialization
+        string email
+        string phone
+        int department_id FK
+    }
+
+    Appointments {
+        int appointment_id PK
+        int patient_id FK
+        int doctor_id FK
+        datetime appointment_date
+        enum status
+        timestamp created_at
+    }
+
+    Payments {
+        int payment_id PK
+        int appointment_id FK UNIQUE
+        decimal amount
+        timestamp payment_date
+        enum payment_method
+    }
+
+    Medical_Records {
+        int record_id PK
+        int appointment_id FK UNIQUE
+        text diagnosis
+        text prescription
+        text notes
+        timestamp created_at
+    }
+
+    %% Relationships
+    Patients ||--o{ Appointments : "books"
+    Doctors  ||--o{ Appointments : "handles"
+    Departments ||--o{ Doctors : "hosts"
+    Appointments ||--|| Payments : "paid_by"
+    Appointments ||--|| Medical_Records : "recorded_in"
+
 
 One-to-one with appointments 📝
 
@@ -66,67 +129,6 @@ Open MySQL Workbench (or any MySQL client)
 Run the clinic_db.sql script
 
 Start adding patients, doctors, appointments, payments, and medical records 💖
-
-
-
-## 📊 Clinic Booking System ER Diagram (Mermaid)
-
-```mermaid
-erDiagram
-    Patients {
-        int patient_id PK
-        string first_name
-        string last_name
-        date dob
-        string gender
-        string phone
-        string email
-    }
-
-    Doctors {
-        int doctor_id PK
-        string first_name
-        string last_name
-        string specialty
-        string phone
-        string email
-    }
-
-    Appointments {
-        int appointment_id PK
-        int patient_id FK
-        int doctor_id FK
-        date appointment_date
-        string appointment_time
-        string status
-    }
-
-    Services {
-        int service_id PK
-        string service_name
-        string description
-        decimal fee
-    }
-
-    Payments {
-        int payment_id PK
-        int appointment_id FK
-        decimal amount
-        date payment_date
-        string payment_method
-    }
-
-    Appointment_Services {
-        int appointment_id FK
-        int service_id FK
-    }
-
-    Patients ||--o{ Appointments : "books"
-    Doctors  ||--o{ Appointments : "handles"
-    Appointments ||--|| Payments : "paid_by"
-    Appointments ||--o{ Appointment_Services : "includes"
-    Services ||--o{ Appointment_Services : "part_of"
-
 
         👩‍💻 Author   
 
