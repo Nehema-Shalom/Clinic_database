@@ -1,34 +1,21 @@
-## 🏥 Clinic Booking System – Colorful ER Diagram
-
-```mermaid
-%% Set theme (light or dark)
-%% GitHub currently ignores theme in ER diagrams, but classes still work
-
 erDiagram
     Patients {
         int patient_id PK
         string first_name
         string last_name
-        string email
-        string phone
         date dob
         string gender
-        date created_at
-    }
-
-    Departments {
-        int department_id PK
-        string department_name
+        string phone
+        string email
     }
 
     Doctors {
         int doctor_id PK
         string first_name
         string last_name
-        string specialization
-        string email
+        string specialty
         string phone
-        int department_id FK
+        string email
     }
 
     Appointments {
@@ -36,36 +23,32 @@ erDiagram
         int patient_id FK
         int doctor_id FK
         date appointment_date
+        string appointment_time
         string status
-        date created_at
+    }
+
+    Services {
+        int service_id PK
+        string service_name
+        string description
+        decimal fee
     }
 
     Payments {
         int payment_id PK
         int appointment_id FK
-        float amount
+        decimal amount
         date payment_date
         string payment_method
     }
 
-    MedicalRecords {
-        int record_id PK
+    Appointment_Services {
         int appointment_id FK
-        string diagnosis
-        string prescription
-        string notes
-        date created_at
+        int service_id FK
     }
 
-    %% Relationships
     Patients ||--o{ Appointments : "books"
     Doctors  ||--o{ Appointments : "handles"
-    Departments ||--o{ Doctors : "hosts"
     Appointments ||--|| Payments : "paid_by"
-    Appointments ||--|| MedicalRecords : "recorded_in"
-
-    %% Classes for colors
-    class Patients,Doctors,Departments,Appointments,Payments,MedicalRecords pinkClass;
-
-    %% Class definitions
-    classDef pinkClass fill:#ffe4e1,stroke:#ff69b4,stroke-width:2px,color:#800080,font-size:12px;
+    Appointments ||--o{ Appointment_Services : "includes"
+    Services ||--o{ Appointment_Services : "part_of"
