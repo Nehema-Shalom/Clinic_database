@@ -1,51 +1,9 @@
-🌸 Clinic Booking System Database 🌸
-
-Welcome to the Clinic Booking System! This database helps manage patients, doctors, appointments, payments, and medical records efficiently, all in one place. 💖
-
-💾 Database Name
-
-  clinic_db
-
-📋 Tables & Purpose
-1️⃣ Patients
-
-Stores patient info: name, contact, DOB, gender
-
-Keeps track of when each patient was added
-
-2️⃣ Departments
-
-Stores all clinic departments
-
-Department names are unique
-
-3️⃣ Doctors
-
-Stores doctor details: name, specialization, contact info
-
-Linked to a department
-
-Can be assigned multiple appointments
-
-4️⃣ Appointments
-
-Tracks appointments between patients & doctors
-
-Stores date, status (Scheduled, Completed, Cancelled)
-
-Auto timestamps when appointment is created
-
-5️⃣ Payments
-
-One-to-one with appointments 💸
-
-Tracks payment amount, date, and method (Cash, Credit Card, Insurance, Mobile Money)
-
-6️⃣ Medical Records
-
-🌸ER Diagram 
+## 🏥 Clinic Booking System – Colorful ER Diagram
 
 ```mermaid
+%% Set theme (light or dark)
+%% GitHub currently ignores theme in ER diagrams, but classes still work
+
 erDiagram
     Patients {
         int patient_id PK
@@ -54,8 +12,8 @@ erDiagram
         string email
         string phone
         date dob
-        enum gender
-        timestamp created_at
+        string gender
+        date created_at
     }
 
     Departments {
@@ -77,26 +35,26 @@ erDiagram
         int appointment_id PK
         int patient_id FK
         int doctor_id FK
-        datetime appointment_date
-        enum status
-        timestamp created_at
+        date appointment_date
+        string status
+        date created_at
     }
 
     Payments {
         int payment_id PK
-        int appointment_id FK UNIQUE
-        decimal amount
-        timestamp payment_date
-        enum payment_method
+        int appointment_id FK
+        float amount
+        date payment_date
+        string payment_method
     }
 
-    Medical_Records {
+    MedicalRecords {
         int record_id PK
-        int appointment_id FK UNIQUE
-        text diagnosis
-        text prescription
-        text notes
-        timestamp created_at
+        int appointment_id FK
+        string diagnosis
+        string prescription
+        string notes
+        date created_at
     }
 
     %% Relationships
@@ -104,10 +62,10 @@ erDiagram
     Doctors  ||--o{ Appointments : "handles"
     Departments ||--o{ Doctors : "hosts"
     Appointments ||--|| Payments : "paid_by"
-    Appointments ||--|| Medical_Records : "recorded_in"
+    Appointments ||--|| MedicalRecords : "recorded_in"
 
+    %% Classes for colors
+    class Patients,Doctors,Departments,Appointments,Payments,MedicalRecords pinkClass;
 
-
-        👩‍💻 Author   
-
-      🗯️ Shalom🦋🎀
+    %% Class definitions
+    classDef pinkClass fill:#ffe4e1,stroke:#ff69b4,stroke-width:2px,color:#800080,font-size:12px;
