@@ -1,5 +1,5 @@
-erDiagram
-    Patients {
+
+        Patients {
         int patient_id PK
         string first_name
         string last_name
